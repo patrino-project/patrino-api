@@ -14,13 +14,13 @@ app.get('/users/', function(req, res) {
     var connection = mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "eduardo",
+      password: "mysql",
       database: "patrinodb"
     });
 
     connection.connect(function(err) {
       if (err) throw err;
-      var sql = "SELECT * FROM users";
+      var sql = "SELECT * FROM mothers";
       connection.query(sql, function (err, result, fields) {
         if (err) throw err;
 
@@ -28,7 +28,11 @@ app.get('/users/', function(req, res) {
         for (var i = 0;i < result.length; i++) {
             users.push({
                 "code": result[i].code,
-                "name": result[i].name
+                "name": result[i].name,
+                "email": result[i].email,
+                "password": result[i].password,
+                "telefone": result[i].telefone,
+                "endereco": result[i].endereco
             });
         }
 
@@ -44,19 +48,25 @@ app.get('/users/', function(req, res) {
 /*Criando um novo usuário*/
 app.post('/users/', function(req, res) {
     var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
+    var telefone = req.body.telefone;
+    var endereco = req.body.endereco;
+    var createdAt = new Date().toLocaleDateString();
+    var modifiedAt = new Date().toLocaleDateString();
 
     console.log(name);
 
     var connection = mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "eduardo",
+      password: "mysql",
       database: "patrinodb"
     });
 
     connection.connect(function(err) {
       if (err) throw err;
-      var sql = "INSERT INTO users(name) VALUES('" + name + "')";
+      var sql = "INSERT INTO mothers(name, email, password, telefone, endereco) VALUES('" + name + "', '" + email + "', '" + password + "', '" + telefone + "', '" + endereco + "')";
       connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Usuário inserido com sucesso!");
@@ -67,6 +77,6 @@ app.post('/users/', function(req, res) {
 
 });
 
-app.listen(8000, function() {
+app.listen(1234, function() {
   console.log("O servidor está rodando na porta 8000.");
 });
