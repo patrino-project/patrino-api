@@ -6,11 +6,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Eduardo S Vieira",
   "license": "ISC",
-  "description": "",
+  "description": "API do Projeto Patrino",
   "dependencies": {
     "express": "^4.17.0",
     "mysql": "^2.17.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "www.github.com/vieiraeduardos/patrino-api.git"
   }
 }
