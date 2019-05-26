@@ -53,7 +53,7 @@ app.post("/login/", function(req, res) {
       if(result.length > 0) {
         console.log("Usuário autenticado!");
 
-        res.send(JSON.stringify({"message": "OK", "user": JSON.stringify({result}) }));
+        res.send(JSON.stringify({"message": "OK", "code": result[0].code }));
       } else {
         console.log("Usuário não autenticado!");
 
@@ -114,7 +114,7 @@ app.put('/users/', function(req, res) {
 
     connection.connect(function(err) {
       if (err) throw err;
-      var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', telefone='" + telefone + "', endereco='" + name + "' WHERE code='" + code + "'";
+      var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', telefone='" + telefone + "', endereco='" + endereco + "' WHERE code='" + code + "'";
       connection.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Usuário atualizado com sucesso!");
