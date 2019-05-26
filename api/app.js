@@ -45,17 +45,46 @@ app.get('/users/', function(req, res) {
 });
 
 
+app.post("/login/", function(req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "mysql",
+    database: "patrinodb"
+  });
+
+  connection.connect(function(err) {
+    if (err) throw err;
+    var sql = "SELECT * FROM mothers WHERE email='" + email + "' AND password='" + password + "'";
+    connection.query(sql, function (err, result) {
+      if (err) throw err;
+
+      if(result.length > 0) {
+        console.log("Usuário autenticado!");
+
+        res.send(JSON.stringify({"message": "OK"}));
+      } else {
+        console.log("Usuário não autenticado!");
+
+        res.send(JSON.stringify({"message": "ERROR"}));
+      }
+    });
+  });
+
+});
+
 /*Criando um novo usuário*/
 app.post('/users/', function(req, res) {
     var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
-    var telefone = req.body.telefone;
-    var endereco = req.body.endereco;
+    var telefone = req.body.phone;
+    var endereco = req.body.address;
     var createdAt = new Date().toLocaleDateString();
     var modifiedAt = new Date().toLocaleDateString();
-
-    console.log(name);
 
     var connection = mysql.createConnection({
       host: "localhost",
@@ -71,7 +100,7 @@ app.post('/users/', function(req, res) {
         if (err) throw err;
         console.log("Usuário inserido com sucesso!");
 
-        res.send("OK");
+        res.send(JSON.stringify({"message": "OK"}));
       });
     });
 
