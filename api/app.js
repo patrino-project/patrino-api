@@ -24,21 +24,9 @@ app.get('/users/', function(req, res) {
       connection.query(sql, function (err, result, fields) {
         if (err) throw err;
 
-        var users = [];
-        for (var i = 0;i < result.length; i++) {
-            users.push({
-                "code": result[i].code,
-                "name": result[i].name,
-                "email": result[i].email,
-                "password": result[i].password,
-                "telefone": result[i].telefone,
-                "endereco": result[i].endereco
-            });
-        }
+        console.log(result);
 
-        console.log(users);
-
-        res.send(JSON.stringify(users));
+        res.send(JSON.stringify(result));
       });
     });
 
@@ -65,7 +53,7 @@ app.post("/login/", function(req, res) {
       if(result.length > 0) {
         console.log("Usuário autenticado!");
 
-        res.send(JSON.stringify({"message": "OK"}));
+        res.send(JSON.stringify({"message": "OK", "user": JSON.stringify({result}) }));
       } else {
         console.log("Usuário não autenticado!");
 
@@ -106,6 +94,37 @@ app.post('/users/', function(req, res) {
 
 });
 
+/*Atualizando usuário*/
+app.put('/users/', function(req, res) {
+    var code = req.body.code;
+    var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
+    var telefone = req.body.phone;
+    var endereco = req.body.address;
+    var createdAt = new Date().toLocaleDateString();
+    var modifiedAt = new Date().toLocaleDateString();
+
+    var connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "mysql",
+      database: "patrinodb"
+    });
+
+    connection.connect(function(err) {
+      if (err) throw err;
+      var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', telefone='" + telefone + "', endereco='" + name + "' WHERE code='" + code + "'";
+      connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Usuário atualizado com sucesso!");
+
+        res.send(JSON.stringify({"message": "OK"}));
+      });
+    });
+
+});
+
 app.listen(1234, function() {
-  console.log("O servidor está rodando na porta 8000.");
+  console.log("O servidor está rodando na porta 1234.");
 });
