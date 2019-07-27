@@ -2,7 +2,7 @@ var ConnectionFactory = require("./ConnectionFactory.js");
 
 /*Obtendo os usuários cadastrados no database*/
 module.exports = function(app) {
-  app.get('/users/', function(req, res) {
+  app.get('/mothers/', function(req, res) {
       var connection = ConnectionFactory.getConnection();
 
       connection.connect(function(err) {
@@ -25,7 +25,7 @@ module.exports = function(app) {
   });
 
   /*Realizando login na aplicação*/
-  app.post("/login/", function(req, res) {
+  app.post("/mothers/login/", function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
@@ -52,7 +52,7 @@ module.exports = function(app) {
   });
 
   /*Criando um novo usuário*/
-  app.post('/users/', function(req, res) {
+  app.post('/mothers/', function(req, res) {
       var name = req.body.name;
       var email = req.body.email;
       var password = req.body.password;
@@ -78,7 +78,7 @@ module.exports = function(app) {
 
 
   /*Deletando um novo usuário*/
-  app.delete('/users/', function(req, res) {
+  app.delete('/mothers/', function(req, res) {
     var email = req.body.email;
     
     var connection = ConnectionFactory.getConnection();
@@ -98,7 +98,7 @@ module.exports = function(app) {
 
 
   /*Atualizando usuário*/
-  app.put('/users/', function(req, res) {
+  app.put('/mothers/', function(req, res) {
       var code = req.body.code;
       var name = req.body.name;
       var email = req.body.email;

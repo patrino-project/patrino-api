@@ -10,7 +10,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
   it("Teste: Deve retornar messagem de sucesso na listagem de mães", (done) => {
     request.get(
       {
-        url : URL + "/users/"
+        url : URL + "/mothers/"
       },
       function(error, response, body){
 
@@ -24,7 +24,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
   it("Teste: Deve retornar messagem de sucesso quando entrar no aplicativo", (done) => {
 
     var options = {
-      uri: URL + "/login/",
+      uri: URL + "/mothers/login/",
       method: 'POST',
       json: {
         "email": "paulo@gmail.com",
@@ -46,7 +46,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
   it("Teste: Deve retornar messagem de sucesso quando criar um novo usuário no aplicativo", (done) => {
 
     var options = {
-      uri: URL + "/users/",
+      uri: URL + "/mothers/",
       method: 'POST',
       json: {
         "name": "Jane Doe",
@@ -62,13 +62,13 @@ describe("TDD de Operações do Modelo Mãe", () => {
         assert.equal(response.statusCode, 200);
 
         var options = {
-          uri: URL + "/users/",
+          uri: URL + "/mothers/",
           method: 'DELETE',
           json: {
             "email": "janedoe@gmail.com"
           }
         };
-    
+
         request(
           options
         );
@@ -82,7 +82,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
   it("Teste: Deve retornar messagem de sucesso quando deletar um novo usuário no aplicativo", (done) => {
 
     var options = {
-      uri: URL + "/users/",
+      uri: URL + "/mothers/",
       method: 'POST',
       json: {
         "name": "Jane Doe",
@@ -96,15 +96,15 @@ describe("TDD de Operações do Modelo Mãe", () => {
       function(error, response, body){
 
         var options = {
-          uri: URL + "/users/",
+          uri: URL + "/mothers/",
           method: 'DELETE',
           json: {
             "email": "janedoe@gmail.com"
           }
         };
-    
+
         request(
-          options, 
+          options,
           function(error, response, body) {
 
             assert.equal(response.statusCode, 200);
@@ -120,7 +120,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
 
     /*Criando usuário*/
     var options = {
-      uri: URL + "/users/",
+      uri: URL + "/mothers/",
       method: 'POST',
       json: {
         "name": "Jane Doe",
@@ -135,16 +135,16 @@ describe("TDD de Operações do Modelo Mãe", () => {
 
         /*Atualizando*/
         var options = {
-          uri: URL + "/users/",
+          uri: URL + "/mothers/",
           method: 'PUT',
           json: {
             "name" : "Eduardo",
             "email" : "janedoe@gmail.com",
           }
         };
-    
+
         request(
-          options, 
+          options,
           function(error, response, body) {
 
             assert.equal(response.statusCode, 200);
@@ -154,13 +154,13 @@ describe("TDD de Operações do Modelo Mãe", () => {
 
         /*Deletando usuário*/
         var options = {
-          uri: URL + "/users/",
+          uri: URL + "/mothers/",
           method: 'DELETE',
           json: {
             "email" : "janedoe@gmail.com"
           }
         };
-    
+
         request(
           options
         );
