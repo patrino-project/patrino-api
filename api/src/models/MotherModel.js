@@ -77,6 +77,26 @@ module.exports = function(app) {
   });
 
 
+  /*Deletando um novo usuário*/
+  app.delete('/users/', function(req, res) {
+    var email = req.body.email;
+    
+    var connection = ConnectionFactory.getConnection();
+
+    connection.connect(function(err) {
+      if (err) throw err;
+      var sql = "DELETE FROM mothers WHERE email='" + email + "'";
+      connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Usuário deletado com sucesso!");
+
+        res.send(JSON.stringify({"message": "OK"}));
+      });
+    });
+
+});
+
+
   /*Atualizando usuário*/
   app.put('/users/', function(req, res) {
       var code = req.body.code;
@@ -92,7 +112,7 @@ module.exports = function(app) {
 
       connection.connect(function(err) {
         if (err) throw err;
-        var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', phone='" + phone + "', address='" + address + "' WHERE code='" + code + "'";
+        var sql = "UPDATE mothers SET name='" + name + "', password='" + password + "', phone='" + phone + "', address='" + address + "' WHERE email='" + email + "'";
         connection.query(sql, function (err, result) {
           if (err) throw err;
           console.log("Usuário atualizado com sucesso!");

@@ -36,15 +36,6 @@ describe("TDD de Operações do Modelo Mãe", () => {
       options,
       function(error, response, body){
 
-        // precisamos converter o retorno para um objeto json
-        var _body = {};
-        try{
-          _body = JSON.parse(body);
-        }
-        catch(e){
-          _body = {};
-        }
-
         assert.equal(response.statusCode, 200);
 
         done();
@@ -59,7 +50,7 @@ describe("TDD de Operações do Modelo Mãe", () => {
       method: 'POST',
       json: {
         "name": "Jane Doe",
-        "email": "janedoee@gmail.com",
+        "email": "janedoe@gmail.com",
         "password": "jane"
       }
     };
@@ -70,7 +61,112 @@ describe("TDD de Operações do Modelo Mãe", () => {
 
         assert.equal(response.statusCode, 200);
 
+        var options = {
+          uri: URL + "/users/",
+          method: 'DELETE',
+          json: {
+            "email": "janedoe@gmail.com"
+          }
+        };
+    
+        request(
+          options
+        );
+
         done();
+      }
+    );
+  });
+
+
+  it("Teste: Deve retornar messagem de sucesso quando deletar um novo usuário no aplicativo", (done) => {
+
+    var options = {
+      uri: URL + "/users/",
+      method: 'POST',
+      json: {
+        "name": "Jane Doe",
+        "email": "janedoe@gmail.com",
+        "password": "jane"
+      }
+    };
+
+    request(
+      options,
+      function(error, response, body){
+
+        var options = {
+          uri: URL + "/users/",
+          method: 'DELETE',
+          json: {
+            "email": "janedoe@gmail.com"
+          }
+        };
+    
+        request(
+          options, 
+          function(error, response, body) {
+
+            assert.equal(response.statusCode, 200);
+
+            done();
+          }
+        );
+      }
+    );
+  });
+
+  it("Teste: Deve retornar messagem de sucesso quando atualizar um novo usuário no aplicativo", (done) => {
+
+    /*Criando usuário*/
+    var options = {
+      uri: URL + "/users/",
+      method: 'POST',
+      json: {
+        "name": "Jane Doe",
+        "email": "janedoe@gmail.com",
+        "password": "jane"
+      }
+    };
+
+    request(
+      options,
+      function(error, response, body){
+
+        /*Atualizando*/
+        var options = {
+          uri: URL + "/users/",
+          method: 'PUT',
+          json: {
+            "name" : "Eduardo",
+            "email" : "janedoe@gmail.com",
+          }
+        };
+    
+        request(
+          options, 
+          function(error, response, body) {
+
+            assert.equal(response.statusCode, 200);
+
+          }
+        );
+
+        /*Deletando usuário*/
+        var options = {
+          uri: URL + "/users/",
+          method: 'DELETE',
+          json: {
+            "email" : "janedoe@gmail.com"
+          }
+        };
+    
+        request(
+          options
+        );
+
+        done();
+
       }
     );
   });
