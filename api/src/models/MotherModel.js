@@ -15,7 +15,7 @@ module.exports = function(app) {
 
           const result = {
             "code": 200,
-            "message": "success",
+            "message": "OK",
             "data": data
           }
 
@@ -56,8 +56,8 @@ module.exports = function(app) {
       var name = req.body.name;
       var email = req.body.email;
       var password = req.body.password;
-      var telefone = req.body.phone;
-      var endereco = req.body.address;
+      var phone = req.body.phone;
+      var address = req.body.address;
       var createdAt = new Date().toLocaleDateString();
       var modifiedAt = new Date().toLocaleDateString();
 
@@ -65,7 +65,7 @@ module.exports = function(app) {
 
       connection.connect(function(err) {
         if (err) throw err;
-        var sql = "INSERT INTO mothers(name, email, password, telefone, endereco) VALUES('" + name + "', '" + email + "', '" + password + "', '" + telefone + "', '" + endereco + "')";
+        var sql = "INSERT INTO mothers(name, email, password, phone, address) VALUES('" + name + "', '" + email + "', '" + password + "', '" + phone + "', '" + address + "')";
         connection.query(sql, function (err, result) {
           if (err) throw err;
           console.log("Usuário inserido com sucesso!");
@@ -83,8 +83,8 @@ module.exports = function(app) {
       var name = req.body.name;
       var email = req.body.email;
       var password = req.body.password;
-      var telefone = req.body.phone;
-      var endereco = req.body.address;
+      var phone = req.body.phone;
+      var address = req.body.address;
       var createdAt = new Date().toLocaleDateString();
       var modifiedAt = new Date().toLocaleDateString();
 
@@ -92,7 +92,7 @@ module.exports = function(app) {
 
       connection.connect(function(err) {
         if (err) throw err;
-        var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', telefone='" + telefone + "', endereco='" + endereco + "' WHERE code='" + code + "'";
+        var sql = "UPDATE mothers SET name='" + name + "', email='" + email + "', password='" + password + "', phone='" + phone + "', address='" + address + "' WHERE code='" + code + "'";
         connection.query(sql, function (err, result) {
           if (err) throw err;
           console.log("Usuário atualizado com sucesso!");

@@ -52,4 +52,27 @@ describe("TDD de Operações do Modelo Mãe", () => {
     );
   });
 
+  it("Teste: Deve retornar messagem de sucesso quando criar um novo usuário no aplicativo", (done) => {
+
+    var options = {
+      uri: URL + "/users/",
+      method: 'POST',
+      json: {
+        "name": "Jane Doe",
+        "email": "janedoee@gmail.com",
+        "password": "jane"
+      }
+    };
+
+    request(
+      options,
+      function(error, response, body){
+
+        assert.equal(response.statusCode, 200);
+
+        done();
+      }
+    );
+  });
+
 });
