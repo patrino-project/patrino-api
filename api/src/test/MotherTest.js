@@ -21,4 +21,35 @@ describe("TDD de Operações do Modelo Mãe", () => {
     );
   });
 
+  it("Teste: Deve retornar messagem de sucesso quando entrar no aplicativo", (done) => {
+
+    var options = {
+      uri: URL + "/login/",
+      method: 'POST',
+      json: {
+        "email": "paulo@gmail.com",
+        "password": "paulo"
+      }
+    };
+
+    request(
+      options,
+      function(error, response, body){
+
+        // precisamos converter o retorno para um objeto json
+        var _body = {};
+        try{
+          _body = JSON.parse(body);
+        }
+        catch(e){
+          _body = {};
+        }
+
+        assert.equal(response.statusCode, 200);
+
+        done();
+      }
+    );
+  });
+
 });
