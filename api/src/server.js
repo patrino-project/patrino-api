@@ -6,7 +6,7 @@ var app = express();
 
 app.use(bodyParser.json());
 
-var MotherModel = require('./MotherModel')(app);
+var MotherModel = require('./models/MotherModel')(app);
 
 app.listen(1234, function() {
   console.log("O servidor está rodando na porta 1234.");
