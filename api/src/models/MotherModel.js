@@ -8,10 +8,16 @@ module.exports = function(app) {
       connection.connect(function(err) {
         if (err) throw err;
         var sql = "SELECT * FROM mothers";
-        connection.query(sql, function (err, result, fields) {
+        connection.query(sql, function (err, data, fields) {
           if (err) throw err;
 
-          console.log(result);
+          console.log("Listando lista de mães cadastradas no aplicativo.");
+
+          const result = {
+            "code": 200,
+            "message": "success",
+            "data": data
+          }
 
           res.send(JSON.stringify(result));
         });
