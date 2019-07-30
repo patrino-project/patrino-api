@@ -3,35 +3,31 @@ API do Projeto Patrino
 
 ## Descrição da API
 
-## Rota: Listando mães cadastradas
-Método GET
+## Rota #1: Listando mães cadastradas
+GET /mothers
 
-Rota /mother
+Resposta
 
-Retorno
 Lista de mães cadastradas no aplicativo
 
-## Rota: Realizando login na aplicação
-Método POST
+## Rota $2: Realizando login na aplicação
+POST /mothers/login/
 
-Rota /mothers/login/
+Parâmetros 
 
-Parametros 
-JSON
-email
-password
+email e password
 
-Retorno
+Resposta
+
 {"message": "OK", "code": usercode }
+
 {"message": "ERROR"}
 
-## Rota: Criando um novo usuário
-Método POST
+## Rota #3: Criando um novo usuário
+POST /mothers/
 
-Rota /mothers/
+Paràmetros
 
-Parametros 
-JSON
 name
 email 
 password 
@@ -40,35 +36,37 @@ address
 createdAt 
 modifiedAt
 
-Retorno
+Resposta
+
 {"message": "OK"}
+
 {"message": "ERROR"}
 
-## Rota: Deletando um novo usuário
-Método DELETE
+## Rota #4: Deletando um novo usuário
+DELETE /mothers/
 
-Rota /mothers/
+Parâmetros 
 
-Parametros 
-JSON
 email
 
-Retorno
+Resposta
+
 {"message": "OK"}
+
 {"message": "ERROR"}
 
-## Rota: Atualizando usuário
-Método PUT
+## Rota #5: Atualizando usuário
+PUT /mothers/
 
-Rota /mothers/
+Parâmetros 
 
-Parametros 
-JSON
 name
 password 
 phone 
 address 
 
-Retorno
+Resposta
+
 {"message": "OK"}
+
 {"message": "ERROR"}
