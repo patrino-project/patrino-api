@@ -13,7 +13,6 @@ describe("TDD de Operações do Modelo Mãe", () => {
         url : URL + "/mothers/"
       },
       function(error, response, body){
-
         assert.equal(response.statusCode, 200);
 
         done();
