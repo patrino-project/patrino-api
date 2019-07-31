@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `patrinodb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `patrinodb`;
 -- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: patrinodb
@@ -16,6 +18,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `attendants`
+--
+
+DROP TABLE IF EXISTS `attendants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `attendants` (
+  `code` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(25) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `createdAt` date DEFAULT NULL,
+  `modifiedAt` date DEFAULT NULL,
+  PRIMARY KEY (`code`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attendants`
+--
+
+LOCK TABLES `attendants` WRITE;
+/*!40000 ALTER TABLE `attendants` DISABLE KEYS */;
+INSERT INTO `attendants` VALUES (6,'Eduardo','eduardo@gmail.com','eduardo','0','0',NULL,NULL);
+/*!40000 ALTER TABLE `attendants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mothers`
 --
 
@@ -27,8 +60,8 @@ CREATE TABLE `mothers` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `telefone` varchar(25) NOT NULL,
-  `endereco` varchar(255) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `createdAt` date DEFAULT NULL,
   `modifiedAt` date DEFAULT NULL,
   PRIMARY KEY (`code`),
@@ -100,6 +133,14 @@ LOCK TABLES `status` WRITE;
 INSERT INTO `status` VALUES (1,'Enviado'),(2,'Cancelado'),(3,'Recebido'),(4,'Em análise'),(5,'Enviado'),(6,'Cancelado'),(7,'Recebido'),(8,'Em análise');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'patrinodb'
+--
+
+--
+-- Dumping routines for database 'patrinodb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -110,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-01 13:01:39
+-- Dump completed on 2019-07-31 14:17:18
