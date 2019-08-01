@@ -4,7 +4,7 @@ module.exports.getConnection = function() {
   var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "mysql",
+    password: "patrino",
     database: "patrinodb"
   });
 

@@ -3,7 +3,7 @@ var request = require("request");
 
 const assert = chai.assert;
 
-const URL = "http://localhost:3000";
+const URL = "http://35.202.173.125";
 
 describe("TDD de Operações do Modelo Atendente", () => {
   it("Teste: Deve retornar messagem de sucesso quando entrar no aplicativo", (done) => {
