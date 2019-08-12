@@ -41,4 +41,22 @@ module.exports = function(app) {
 
   });
 
+  /*Criando um novo frasco*/
+  app.get('/bottles/', function(req, res) {
+
+      var connection = ConnectionFactory.getConnection();
+
+      connection.connect(function(err) {
+        if (err) throw err;
+        var sql = "select * from bottles inner join mothers where mothers.code = bottles.mother";
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+
+          res.send(JSON.stringify(result));
+        });
+      });
+
+  });
+
+
 }
