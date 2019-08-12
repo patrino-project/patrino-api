@@ -4,7 +4,8 @@ var request = require("request");
 
 const assert = chai.assert;
 
-const URL = "http://35.202.173.125";
+//const URL = "http://35.202.173.125";
+const URL = "http://localhost:3000";
 
 describe("TDD de Operações do Modelo Mãe", () => {
   it("Teste: Deve retornar messagem de sucesso na listagem de mães", (done) => {
