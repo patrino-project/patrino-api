@@ -1,3 +1,4 @@
+
 const chai = require("chai");
 var request = require("request");
 
@@ -6,15 +7,14 @@ const assert = chai.assert;
 //const URL = "http://35.202.173.125";
 const URL = "http://localhost:3000";
 
-describe("TDD de Operações do Modelo Atendente", () => {
-  it("Teste: Deve retornar messagem de sucesso quando entrar no aplicativo", (done) => {
-
+describe("TDD de Operações do Modelo de Requisições", () => {
+  it("Teste: Deve retornar messagem de sucesso na criação de nova tentativa de doação", (done) => {
     var options = {
-      uri: URL + "/attendants/login/",
+      uri: URL + "/bottles/",
       method: 'POST',
       json: {
-        "email": "paulo@gmail.com",
-        "password": "paulo"
+        "mother": 2
+
       }
     };
 
@@ -29,4 +29,4 @@ describe("TDD de Operações do Modelo Atendente", () => {
     );
   });
 
-});
+}); /* end describe*/
