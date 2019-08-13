@@ -18,8 +18,7 @@ module.exports = function(app) {
 
       connection.connect(function(err) {
         if (err) throw err;
-        var sql = "INSERT INTO bottles(mother) VALUES(" + mother + ")var sql = "INSERT INTO bottles(mother, createdAt, deadline) VALUES(" + mother + ", '" + createdAt + "', '" + deadline + "')";
-";
+var sql = "INSERT INTO bottles(mother, createdAt, deadline) VALUES(" + mother + ", '" + createdAt + "', '" + deadline + "')";
         connection.query(sql, function (err, result) {
           if (err) throw err;
           console.log("Frasco criada com sucesso!");
